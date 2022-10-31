@@ -6,7 +6,6 @@ import {
   signInWithPhoneNumber,
 } from "firebase/auth";
 import axios from "axios";
-
 const auth = getAuth(); 
 class App extends React.Component {
   handleChange = (e) => {
@@ -31,12 +30,14 @@ class App extends React.Component {
         defaultCountry: "IN",
       },
       auth
-    );
-    console.log("Third");
-  };
-  onSignInSubmit = (e) => {
-    e.preventDefault();
-    console.log("First");
+      );
+      console.log("Third");
+    };
+    onSignInSubmit = (e) => {
+      e.preventDefault();
+      console.log(window.location);
+      console.log(new URLSearchParams(window.location.search))
+      console.log("First");
     this.configureCaptcha();
     const phoneNumber = "+91" + this.state.mobile;
     console.log(phoneNumber);
@@ -73,26 +74,30 @@ class App extends React.Component {
         user.getIdToken().then((idToken) => {
           const options = {
             method: "GET",
-            url: "https://epvitechbackend.herokuapp.com/sessionlogin",
+            url: "https://epvitechbackendprod.herokuapp.com/sessionlogin",
             headers: {
               "Access-Control-Allow-Origin": "*",
               gettoken: idToken,
             },
           };
+          console.log("options")
           console.log(options)
           axios
             .request(options)
             .then(function (response) {
               console.log("inside second .then");
-              console.log(response.data);
+              console.log(response);
               const queryString = window.location.search;
+              console.log("query string")
+              console.log(window.location);
               const urlParams = new URLSearchParams(queryString);
+              console.log(urlParams)
               let state = urlParams.get("state");
               let redirect_uri = urlParams.get("redirect_uri");
               console.log(redirect_uri);
               console.log(state);
               console.log(result.user.uid);
-              // window.location = `${redirect_uri}/?state=${state}&code=${result.user.uid}`;
+              window.location = `${redirect_uri}/?state=${state}&code=${result.user.uid}`;
             })
             .catch(function (error) {
               console.log("error in .catch")
