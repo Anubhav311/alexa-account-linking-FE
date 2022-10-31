@@ -93,7 +93,9 @@ class App extends React.Component {
               const urlParams = new URLSearchParams(queryString);
               console.log(urlParams)
               let state = urlParams.get("state");
+              // let state = urlParams.get("state");
               let redirect_uri = urlParams.get("redirect_uri");
+              // let redirect_uri = "https://alexa.amazon.co.jp/api/skill/link/MOTXN6BWI66X5"
               console.log(redirect_uri);
               console.log(state);
               console.log(result.user.uid);
