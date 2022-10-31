@@ -92,7 +92,7 @@ class App extends React.Component {
               console.log(redirect_uri);
               console.log(state);
               console.log(result.user.uid);
-              window.location = `${redirect_uri}/?state=${state}&code=${result.user.uid}`;
+              // window.location = `${redirect_uri}/?state=${state}&code=${result.user.uid}`;
             })
             .catch(function (error) {
               console.log("error in .catch")
