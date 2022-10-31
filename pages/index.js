@@ -86,10 +86,13 @@ class App extends React.Component {
               const urlParams = new URLSearchParams(queryString);
               let state = urlParams.get("state");
               let redirect_uri = urlParams.get("redirect_uri");
-              // console.log(redirect_uri);
+              console.log(redirect_uri);
+              console.log(state);
+              console.log(result.user.uid);
               window.location = `${redirect_uri}/?state=${state}&code=${result.user.uid}`;
             })
             .catch(function (error) {
+              console.log("error in .catch")
               console.error(error);
             });
         });
