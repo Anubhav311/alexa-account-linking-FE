@@ -67,6 +67,7 @@ class App extends React.Component {
       .confirm(code)
       .then((result) => {
         // User signed in successfully.
+        console.log("inside first .then");
         const user = result.user;
         console.log(user);
         user.getIdToken().then((idToken) => {
@@ -82,6 +83,7 @@ class App extends React.Component {
           axios
             .request(options)
             .then(function (response) {
+              console.log("inside second .then");
               console.log(response.data);
               const queryString = window.location.search;
               const urlParams = new URLSearchParams(queryString);
