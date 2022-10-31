@@ -78,10 +78,11 @@ class App extends React.Component {
               gettoken: idToken,
             },
           };
+          console.log(options)
           axios
             .request(options)
             .then(function (response) {
-              // console.log(response.data);
+              console.log(response.data);
               const queryString = window.location.search;
               const urlParams = new URLSearchParams(queryString);
               let state = urlParams.get("state");
